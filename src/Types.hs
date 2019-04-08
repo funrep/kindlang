@@ -1,8 +1,13 @@
 module Types where
 
 import Data.Text (Text)
+import Data.Map (Map)
 
 type Symbol = Text
+
+type Program = Maybe Expr
+
+type Env = Map Symbol Expr
 
 data Expr
   = Var Symbol

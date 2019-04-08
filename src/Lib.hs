@@ -4,6 +4,7 @@ import Control.Monad.Except
 import Control.Monad.Reader
 import Data.Text (Text)
 import qualified Data.Text as T
+import qualified Data.Map as M
 
 import Text.Parsec
 
@@ -15,4 +16,4 @@ someFunc :: IO ()
 someFunc = putStrLn "someFunc"
 
 runProgram :: String -> Either ParseError (Maybe Expr)
-runProgram = fmap eval . parseString . T.pack
+runProgram = fmap (eval M.empty) . parseString . T.pack
