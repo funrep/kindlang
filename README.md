@@ -8,4 +8,4 @@ Toy language to learn about programming language design and implementation.
 - Parsing https://www.zinkov.com/posts/2016-01-12-indentation-sensitive-parsing/
 - Parsing http://www.burz.io/2014/06/24/parsing.html
 - Compilation https://esumii.github.io/min-caml/index-e.html
-- Compilation, hindley-milner etc. http://dev.stephendiehl.com/fun/index.html
+- Lambda calculus, hindley-milner etc. http://dev.stephendiehl.com/fun/index.html

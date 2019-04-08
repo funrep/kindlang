@@ -41,23 +41,21 @@ lexerConfig = Token.LanguageDef
 
 lexer = Token.makeTokenParser lexerConfig
 
-identifier = fmap T.pack $ Token.identifier lexer -- parses a valid identifier in our language
-symbol     = Token.symbol lexer     -- parses a symbol like "]"
-reserved   = Token.reserved lexer   -- parses a reserved word like "If"
-reservedOp = Token.reservedOp lexer -- parses a reserved operation like "<="
-parens     = Token.parens lexer     -- parses parenthesis surrounding the parser passed to it
-brackets   = Token.brackets lexer   -- parses brackets surrounding the parser passed to it
-commaSep   = Token.commaSep lexer   -- parses some or no comma separated instances of
-                                    -- the argument parser
-integer    = Token.integer lexer    -- parses an integer
-whiteSpace = Token.whiteSpace lexer -- parses whitespace
+identifier = fmap T.pack $ Token.identifier lexer
+symbol     = Token.symbol lexer
+reserved   = Token.reserved lexer
+reservedOp = Token.reservedOp lexer
+parens     = Token.parens lexer
+brackets   = Token.brackets lexer
+commaSep   = Token.commaSep lexer
+integer    = Token.integer lexer
+whiteSpace = Token.whiteSpace lexer
 
 binary name label assoc = Infix (do{ reservedOp name
                                    ; return (\x y -> label x y)
                                    }) assoc
 
 prefix name label = Prefix (reservedOp name *> return (\x -> label x))
--- for [ prefix "!" Not ]
 
 opTable = [ [ prefix "!" Not ]
           , [ application ]
@@ -89,8 +87,9 @@ parseInt :: Parser Expr
 parseInt = Int <$> integer
 
 parseBool :: Parser Expr
-parseBool = Bool True <$ reserved "True"
-  <|> Bool False <$ reserved "False"
+parseBool =
+  Bool True <$ reserved "True"
+    <|> Bool False <$ reserved "False"
 
 parseVar :: Parser Expr
 parseVar = Var <$> identifier
