@@ -22,7 +22,7 @@ main = hspec $ do
     it "returns 1 if x is true" $ do
       runProgram (programs !! 1) `shouldBe` rightJust (Int 1)
     it "returns 420 * 1337 / 85 = 6606" $ do
-      runProgram (programs !! 1) `shouldBe` rightJust (Int 6606)
+      runProgram (programs !! 2) `shouldBe` rightJust (Int 6606)
 
   
 
