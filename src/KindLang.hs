@@ -1,4 +1,4 @@
-module Lib where
+module KindLang where
 
 import Control.Monad.Except
 import Control.Monad.Reader
@@ -11,9 +11,6 @@ import Text.Parsec
 import Types
 import Parser
 import Eval
-
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
 
 runProgram :: String -> Either ParseError (Maybe Expr)
 runProgram = fmap (eval M.empty) . parseString . T.pack

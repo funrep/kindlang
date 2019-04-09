@@ -19,7 +19,7 @@ parser = buildExpressionParser opTable expr
 parseString :: Text -> Either ParseError Expr
 parseString s = parse (parser <* eof) "" s
 
-reservedNames = words "True False lambda if then else let in"
+reservedNames = words "True False lambda if then else let in main"
 reservedOpNames = words "-> && || ! + - * / % = < <= > >="
 
 type TextLanguageDef st = Token.GenLanguageDef Text st Identity

@@ -20,7 +20,7 @@ data Expr
   | Lambda Symbol Expr
   | App Expr Expr
   | Let Symbol Expr Expr
-  deriving Show
+  deriving (Show, Eq)
 
 data BinOp a
   = Add a a
@@ -36,4 +36,4 @@ data BinOp a
   | NotEqual a a
   | And a a
   | Or a a
-  deriving Show
+  deriving (Show, Eq)
