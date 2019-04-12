@@ -1,16 +1,20 @@
 module Types where
 
+import Control.Monad.Except (ExceptT)
 import Data.Text (Text)
 import Data.Map (Map)
 
 type Symbol = Text
 
-type Program = Maybe Expr
+type Program = [Expr]
+
+type Eval = ExceptT Error IO
 
 type Env = Map Symbol Expr
 
 data Expr
-  = Var Symbol
+  = Unit
+  | Var Symbol
   | Int Integer
   | Bool Bool
   | Not Expr
@@ -18,6 +22,7 @@ data Expr
   | BinOp (BinOp Expr)
   | IfElse Expr Expr Expr
   | Lambda Symbol Expr
+  | Action Action
   | App Expr Expr
   | Let Symbol Expr Expr
   deriving (Show, Eq)
@@ -36,4 +41,16 @@ data BinOp a
   | NotEqual a a
   | And a a
   | Or a a
+  deriving (Show, Eq)
+
+data Action
+  = PrintLn
+  | ReadInt
+  deriving (Show, Eq)
+
+data Error
+  = TypeError
+  | UnboundVar
+  | IOError
+  | MiscError
   deriving (Show, Eq)
